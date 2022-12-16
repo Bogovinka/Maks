@@ -1,0 +1,57 @@
+CREATE TABLE Items(
+	ID int primary key identity(1,1),
+	Name nvarchar(250));
+
+CREATE TABLE Teacher(
+	ID int primary key identity(1,1),
+	Surname nvarchar(250),
+	Name nvarchar(250),
+	MiddleName nvarchar(250),
+	Items_id int foreign key references Items(ID));
+
+CREATE TABLE Classes(
+	ID int primary key identity(1,1),
+	Name nvarchar(25),
+	Teacher_id int foreign key references Teacher(ID));
+	
+CREATE TABLE Student(
+	ID int primary key identity(1,1),
+	Surname nvarchar(250),
+	Name nvarchar(250),
+	Login nvarchar(250),
+	Password nvarchar(250),
+	Classes_id int foreign key references Classes(ID));
+	
+CREATE TABLE DayWeek(
+	ID int primary key identity(1,1),
+	Name nvarchar(250));
+	
+CREATE TABLE Lesson(
+	ID int primary key identity(1,1),
+	Num_lesson int,
+	Classes_id int foreign key references Classes(ID),
+	Items_id int foreign key references Items(ID),
+	DayWeek_id int foreign key references DayWeek(ID));
+
+INSERT INTO Items VALUES(N''), (N'Математика'), (N'Русский язык'), (N'Георграфия'), (N'История'), (N'Физика'), (N'Труды'), (N'Физкультура'), (N'Обществознание')
+	
+INSERT INTO Teacher VALUES(N'Простая', N'Простота', N'Простаявна', 1);
+
+INSERT INTO Classes VALUES(N'5А', 1), (N'6А', 1);
+
+INSERT INTO Student VALUES(N'Иванов', N'Иван', N'u1', N'u1', 1),
+(N'Миронов', N'Мирон', N'u2', N'u2', 1),
+(N'Акаков', N'Акакий', N'u3', N'u3', 1);	
+
+INSERT INTO DayWeek VALUES(N'Понедельник'), (N'Вторник'), (N'Среда'),
+(N'Четверг'), (N'Пятница'), (N'Суббота'), (N'Воскресенье');
+
+INSERT INTO Lesson VALUES(1, 1, 1, 1), (2, 1, 1, 1), (3, 1, 1, 1), (4, 1, 1, 1), (5, 1, 1, 1), (6, 1, 1, 1),
+(1, 1, 1, 2), (2, 1, 1, 2), (3, 1, 1, 2), (4, 1, 1, 2), (5, 1, 1, 2), (6, 1, 1, 2),
+(1, 1, 1, 3), (2, 1, 1, 3), (3, 1, 1, 3), (4, 1, 1, 3), (5, 1, 1, 3), (6, 1, 1, 3),
+(1, 1, 1, 4), (2, 1, 1, 4), (3, 1, 1, 4), (4, 1, 1, 4), (5, 1, 1, 4), (6, 1, 1, 4),
+(1, 1, 1, 5), (2, 1, 1, 5), (3, 1, 1, 5), (4, 1, 1, 5), (5, 1, 1, 5), (6, 1, 1, 5),
+(1, 1, 1, 6), (2, 1, 1, 6), (3, 1, 1, 6), (4, 1, 1, 6), (5, 1, 1, 6), (6, 1, 1, 6),
+(1, 1, 1, 7), (2, 1, 1, 7), (3, 1, 1, 7), (4, 1, 1, 7), (5, 1, 1, 7), (6, 1, 1, 7);
+
+	

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3542a96160ee4020a4b797a140c3f14f" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Classes" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.DayWeek" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Items" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Lesson" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Student" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Teacher" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK__Classes__Teacher__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Lesson__Classes___4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Student__Classes__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Lesson__DayWeek___44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Lesson__Items_id__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Teacher__Items_i__38996AB5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

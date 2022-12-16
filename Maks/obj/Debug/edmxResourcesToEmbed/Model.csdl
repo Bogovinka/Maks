@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Classes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Teacher_id" Type="Int32" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK__Classes__Teacher__3B75D760" FromRole="Classes" ToRole="Teacher" />
+    <NavigationProperty Name="Lesson" Relationship="Self.FK__Lesson__Classes___4316F928" FromRole="Classes" ToRole="Lesson" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Student__Classes__3E52440B" FromRole="Classes" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="DayWeek">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lesson" Relationship="Self.FK__Lesson__DayWeek___44FF419A" FromRole="DayWeek" ToRole="Lesson" />
+  </EntityType>
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lesson" Relationship="Self.FK__Lesson__Items_id__440B1D61" FromRole="Items" ToRole="Lesson" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK__Teacher__Items_i__38996AB5" FromRole="Items" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Lesson">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Num_lesson" Type="Int32" />
+    <Property Name="Classes_id" Type="Int32" />
+    <Property Name="Items_id" Type="Int32" />
+    <Property Name="DayWeek_id" Type="Int32" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Lesson__Classes___4316F928" FromRole="Lesson" ToRole="Classes" />
+    <NavigationProperty Name="DayWeek" Relationship="Self.FK__Lesson__DayWeek___44FF419A" FromRole="Lesson" ToRole="DayWeek" />
+    <NavigationProperty Name="Items" Relationship="Self.FK__Lesson__Items_id__440B1D61" FromRole="Lesson" ToRole="Items" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Classes_id" Type="Int32" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Student__Classes__3E52440B" FromRole="Student" ToRole="Classes" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Items_id" Type="Int32" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK__Classes__Teacher__3B75D760" FromRole="Teacher" ToRole="Classes" />
+    <NavigationProperty Name="Items" Relationship="Self.FK__Teacher__Items_i__38996AB5" FromRole="Teacher" ToRole="Items" />
+  </EntityType>
+  <Association Name="FK__Classes__Teacher__3B75D760">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Classes">
+        <PropertyRef Name="Teacher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lesson__Classes___4316F928">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lesson">
+        <PropertyRef Name="Classes_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student__Classes__3E52440B">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Classes_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lesson__DayWeek___44FF419A">
+    <End Role="DayWeek" Type="Self.DayWeek" Multiplicity="0..1" />
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DayWeek">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lesson">
+        <PropertyRef Name="DayWeek_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lesson__Items_id__440B1D61">
+    <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lesson">
+        <PropertyRef Name="Items_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Teacher__Items_i__38996AB5">
+    <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="Items_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Classes" EntityType="Self.Classes" />
+    <EntitySet Name="DayWeek" EntityType="Self.DayWeek" />
+    <EntitySet Name="Items" EntityType="Self.Items" />
+    <EntitySet Name="Lesson" EntityType="Self.Lesson" />
+    <EntitySet Name="Student" EntityType="Self.Student" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+    <AssociationSet Name="FK__Classes__Teacher__3B75D760" Association="Self.FK__Classes__Teacher__3B75D760">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Classes" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lesson__Classes___4316F928" Association="Self.FK__Lesson__Classes___4316F928">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Lesson" EntitySet="Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student__Classes__3E52440B" Association="Self.FK__Student__Classes__3E52440B">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lesson__DayWeek___44FF419A" Association="Self.FK__Lesson__DayWeek___44FF419A">
+      <End Role="DayWeek" EntitySet="DayWeek" />
+      <End Role="Lesson" EntitySet="Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lesson__Items_id__440B1D61" Association="Self.FK__Lesson__Items_id__440B1D61">
+      <End Role="Items" EntitySet="Items" />
+      <End Role="Lesson" EntitySet="Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Teacher__Items_i__38996AB5" Association="Self.FK__Teacher__Items_i__38996AB5">
+      <End Role="Items" EntitySet="Items" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
