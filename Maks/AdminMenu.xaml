@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Maks"
         mc:Ignorable="d"
-        Title="Изменение расписания" KeyDown="Window_KeyDown" MinHeight="650" MinWidth="800" Height="650" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Изменение расписания" KeyDown="Window_KeyDown" MinHeight="750" MinWidth="800" Height="750" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -17,6 +17,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="save" Click="save_Click">Сохранить</Button>
         <StackPanel Background="#FFAFAFAF" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">
             <Label>Понедельник</Label>
             <ListView x:Name="pn">

@@ -16,6 +16,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <StackPanel Background="#FFAFAFAF" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">
             <Label>Понедельник</Label>
             <ListView x:Name="pn">

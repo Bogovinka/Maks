@@ -22,6 +22,8 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="loginText"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Логин" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Cursor="IBeam" />
         <PasswordBox x:Name="passwordText" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Пароль" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"></PasswordBox>
+        <TextBox x:Name="passwordText2" Visibility="Hidden" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Пароль" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"></TextBox>
+        <CheckBox Grid.Row="2" Grid.Column="2" Margin="5,0,0,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">Показать пароль</CheckBox>
         <Button x:Name="loginB" Grid.Column="1" Grid.Row="3" Content="Войти" Click="loginB_Click" Cursor="Hand"></Button>
 
     </Grid>

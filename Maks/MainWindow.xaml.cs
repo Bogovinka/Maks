@@ -27,6 +27,7 @@ namespace Maks
         DatabaseEntities db = new DatabaseEntities();
         private void loginB_Click(object sender, RoutedEventArgs e)
         {
+            if (passwordText.Visibility == Visibility.Hidden) passwordText.Password = passwordText2.Text;
             if (loginText.Text == "admin" && passwordText.Password == "admin")
             {
                 AdminMenu aM = new AdminMenu();
@@ -43,6 +44,20 @@ namespace Maks
                 Close();
             }
             else MessageBox.Show("Такого логина или пароля нет");
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            passwordText.Visibility = Visibility.Hidden;
+            passwordText2.Visibility = Visibility.Visible;
+            passwordText2.Text = passwordText.Password;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            passwordText.Visibility = Visibility.Visible;
+            passwordText2.Visibility = Visibility.Hidden;
+            passwordText.Password = passwordText2.Text;
         }
     }
 }
